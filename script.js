@@ -1,83 +1,70 @@
-const site_namer = document.getElementById("site_namer");
-const name_site_btn = document.getElementById("lock_in");
-const title = document.getElementById("title");
+const fileInput = document.getElementById("file");
+const file_name_display = document.getElementById("file_name");
+const information_display = document.getElementById("information_display");
+const target_input = document.getElementById("target_query");
+const name_check = document.getElementById("check_name");
+const button = document.getElementById("button");
 
-let button = document.getElementById("btn");
+let arrayOfArrays;
+let data_uploaded = false;
+let query_target;
 
-const value1 = document.getElementById("value1");
-const value2 = document.getElementById("value2");
+// Datenausgabe (Wenn Name richtig ist werden alle features ausgegeben), Check: Daten Hochgeladen, Name im Datenset vorhanden. 
+button.addEventListener("click", () => {
+    let valid_name = false;
+    query_target = target_input.value;
+    console.log(arrayOfArrays);
 
-const result = document.getElementById("results");
-
-const image = document.getElementById("image");
-
-const radio_selection = document.getElementById("radio_selection");
-const radio_cat = document.getElementById("Cat_Fact");
-const radio_dog = document.getElementById("Dog_Pic");
-
-const fact_display = document.getElementById("fact_display");
-
-let DataURL;
-
-name_site_btn.addEventListener("click", function(){
-    let site_name = site_namer.value;
-    title.innerText = site_name;
-    site_namer.style.display = "none";
-    name_site_btn.style.display = "none";
-})
-
-async function getFact(DataURL){
-        let response = await fetch(DataURL);
-        data = await response.json();
-        fact = data.fact
-        console.log(fact)
+    if(data_uploaded == false){
+        name_check.innerText = "Data is missing";
     }
 
- function displayFact(){
-    fact_display.innerText = fact
-}
+    for (const line of arrayOfArrays){
+        //Wenn der Name mit line[Parameter] übereinstimmt werden die Daten ausgegeben
+        if (query_target == line[7]){
 
-async function getImage(DataURL){
-        let response = await fetch(DataURL);
-        data = await response.json();
-        return data.message
-    }
+            function prepare_information(){
+                let counter = 0;
+                let text;
+                 for (const element of arrayOfArrays[0]){
+                    if (text == undefined){
+                        text = `${element}: ${line[counter]} `
+                    }else{
+                        text += `${element}: ${line[counter]} `
+                    }
+                    counter ++;
+                 }
+                 return text
+            
+            } 
+            const text = prepare_information();
+            name_check.innerText = `Requested Information: ${text}`;
+            valid_name = true;
 
-function displayImage(imageURL){
-    image.src = imageURL
-    image.style.display = "flex"
-}
-
-async function input_selection(){
-
-        let checkedRadio = radio_selection.querySelector('input[type="checkbox"]:checked');
-        console.log(checkedRadio.id)
-        if (checkedRadio.id == "Cat_Fact"){
-            DataURL = "https://catfact.ninja/fact";
-            let fact = await getFact(DataURL);
-            displayFact();
-        }else if(checkedRadio.id == "Dog_Pic")
-        {
-            DataURL = "https://dog.ceo/api/breeds/image/random";
-            let imageURL = await getImage(DataURL);
-            console.log('Blub: ' + imageURL)
-            displayImage(imageURL);
         }
-}    
+    }
+    if(!valid_name && data_uploaded){
+        name_check.innerText = `${target_input.value} not found`;
+    }
 
-button.addEventListener("click", function(){
-    input_selection();
+
 })
 
-radio_cat.addEventListener("click", function(){
-    if(radio_dog.checked == true){
-        radio_dog.checked = false;
-    }
-})
+//Input File uploader & File Reader
+
+fileInput.addEventListener("change", () => {
+
+    data_uploaded = true;
+    file_name_display.innerText = "Name of File: " + fileInput.files[0].name;
+
+    const fr = new FileReader();
+    fr.readAsText(fileInput.files[0]);
+    fr.addEventListener("load", () => {
+        const file = fr.result;
+        const lines = file.split("\r\n");
+        arrayOfArrays = lines.map(line => line.split(","));
+    })
 
 
-radio_dog.addEventListener("click", function(){
-    if(radio_cat.checked == true){
-        radio_cat.checked = false;
-    }
+
 })
