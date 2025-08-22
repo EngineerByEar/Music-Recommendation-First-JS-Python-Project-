@@ -100,76 +100,76 @@ Output on Webinterface
 
 
 
-Day 3 — Understanding JSON
-Concept & Why It Matters
-JSON is the most common format for exchanging data between frontend and backend.
+      Day 3 — Understanding JSON
+      Concept & Why It Matters
+      JSON is the most common format for exchanging data between frontend and backend.
 
-Core Commands
+      Core Commands
 
-JS: JSON.stringify(), JSON.parse()
+      JS: JSON.stringify(), JSON.parse()
 
-Python: jsonify(), json.dumps(), json.loads()
+      Python: jsonify(), json.dumps(), json.loads()
 
-Guided Example
+      Guided Example
 
-js
-Kopieren
-Bearbeiten
-let obj = {name: "Alex", age: 25};
-let jsonStr = JSON.stringify(obj);
-console.log(jsonStr);
+      js
+      Kopieren
+      Bearbeiten
+      let obj = {name: "Alex", age: 25};
+      let jsonStr = JSON.stringify(obj);
+      console.log(jsonStr);
 
-python
-Kopieren
-Bearbeiten
-from flask import Flask, jsonify
-app = Flask(__name__)
-@app.route("/")
-def home():
-    return jsonify({"name": "Alex", "age": 25})
-Challenges
+      python
+      Kopieren
+      Bearbeiten
+      from flask import Flask, jsonify
+      app = Flask(__name__)
+      @app.route("/")
+      def home():
+          return jsonify({"name": "Alex", "age": 25})
+      Challenges
 
-Fetch user #3 from jsonplaceholder and log only the username.
+      Fetch user #3 from jsonplaceholder and log only the username.
 
-Convert {genre: "Jazz"} to JSON and log it.
+      Convert {genre: "Jazz"} to JSON and log it.
 
-In Flask, return a JSON object with your name and today’s date.
+      In Flask, return a JSON object with your name and today’s date.
 
-Day 4 — HTML Forms & POST Requests
-Concept & Why It Matters
-Forms + POST requests let you send user data (text, files) to a server.
+      Day 4 — HTML Forms & POST Requests
+      Concept & Why It Matters
+      Forms + POST requests let you send user data (text, files) to a server.
 
-Core Commands
+      Core Commands
 
-<form method="POST">
+      <form method="POST">
 
-JS: FormData()
+      JS: FormData()
 
-fetch with { method: 'POST' }
+      fetch with { method: 'POST' }
 
-Guided Example
+      Guided Example
 
-html
-Kopieren
-Bearbeiten
-<form id="myForm">
-  <input type="text" name="username">
-  <button type="submit">Send</button>
-</form>
-<script>
-document.getElementById("myForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    fetch("/api", { method: "POST", body: formData });
-});
-</script>
-Challenges
+      html
+      Kopieren
+      Bearbeiten
+      <form id="myForm">
+        <input type="text" name="username">
+        <button type="submit">Send</button>
+      </form>
+      <script>
+      document.getElementById("myForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          fetch("/api", { method: "POST", body: formData });
+      });
+      </script>
+      Challenges
 
-Make a form with name + email, log it in console before sending.
+      Make a form with name + email, log it in console before sending.
 
-Send the form data to /test and check the network tab.
+      Send the form data to /test and check the network tab.
 
-Modify the form to include a file input.
+      Modify the form to include a file input.
 
 Day 5 — Intro to Flask Backend
 Concept & Why It Matters

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import json
 
 app = Flask(__name__)
 
@@ -6,14 +7,15 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/send", methods=["POST"])
-def send():
-    data=request.get_json()
-    doubletime = data["bpm"]*2
-    response ={
-        "tempo": doubletime
-    }
-    return jsonify(response)
+
+
+@app.route("/process_data", methods=["POST"])
+
+def process_data():
+    dataURL = json.loads(request.get_json())
+    print(dataURL)
+    return jsonify("Something")
+
 
 
 if __name__ == "__main__":

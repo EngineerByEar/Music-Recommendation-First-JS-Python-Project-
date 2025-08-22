@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body style="display: flex; flex-direction: column; gap: 4vh; align-items: center;">
-   
-    <div style="display: flex; gap: 2vw;">
-        <p>Enter BPM:</p>
-        <input type="text" id="BPM"> 
+    <div style="display: flex; flex-direction: row; align-items: center; gap: 1vw;">
+        <p>Upload File:  </p>
+        <input type="file" id="input">
     </div>
-<button id="btn">Send</button>
-<p id="result"></p>
+    <button id="btn">Submit</button>
+    <p id="display"></p>
     <script src="/static/script.js"></script>
 </body>
 </html>

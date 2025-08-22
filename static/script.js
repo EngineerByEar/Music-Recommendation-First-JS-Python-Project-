@@ -1,35 +1,31 @@
-/*
-Gameplan 21.08.: 
-    Create Input Forms
-    Create JSON in JS
-    Send to Python
-    Display a response
-*/
+const file_input = document.getElementById("input");
 const btn = document.getElementById("btn");
-const bpm_input = document.getElementById("BPM");
-const display = document.getElementById("result");
-let bpm;
+const display = document.getElementById("display");
+let file;
+let data;
 
-bpm_input.addEventListener("change", function(){
-    bpm = Number(bpm_input.value);
-});
+file_input.addEventListener("change",() => {
+  file = file_input.files[0];
+  console.log(file);
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  
+  reader.addEventListener('load', function(){
+    dataURL = reader.result;
+    console.log(JSON.stringify(dataURL))
+  })
+})
 
 btn.addEventListener("click", async () => {
-
-  const data = {
-    bpm: bpm
-  }
-
-  const process = await fetch("http://127.0.0.1:5000/send", {
+  
+  //Sending the Data to python and receiving a response
+  
+  const process_data = await fetch("http://127.0.0.1:5000/process_data", {
     method: "POST",
-    headers:{"Content-Type": "application/json"},
-    body: JSON.stringify(data)
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(dataURL)
   })
-  result = await process.json()
-  console.log(result);
-display.innerText = result["tempo"];
-
-}
-
-
-);
+  const processed_data = await process_data.json();
+  display.innerText = processed_data
+  
+})
