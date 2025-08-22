@@ -1,26 +1,27 @@
-const file_input = document.getElementById("input");
-const btn = document.getElementById("btn");
+const file_input = document.getElementById("file_input");
+const button = document.getElementById("btn");
 const display = document.getElementById("display");
 let file;
-let data;
-let formData;
 
-file_input.addEventListener("change",() => {
-  file = file_input.files[0];
-  console.log(file.name, file.size)
-  formData = new FormData();
-  formData.append("music", file);
-  
+file_input.addEventListener("change", () => {
+  //select uploaded file
+  file =file_input.files[0];
+  console.log(file.name);
+  //Use FormData() to transmit file to python and avoiding base64 encoding
+  form_data = new FormData();
+  form_data.append("music", file);
 })
 
-btn.addEventListener("click", async () => {
-  
-  //Sending the Data to python and receiving a response
-  
-  const process_data = await fetch("http://127.0.0.1:5000/process_data", {
+button.addEventListener("click", async () => {
+  console.log("Sending to analysis")
+  //send it to the /analyze Port of the Flask Server
+  const analyze = await fetch("http://127.0.0.1:5000/analyze", {
+    //Method Post also needs to be defined in Flask
     method: "POST",
-    body: formData
+    //Form Data transmissions don´t need a Header like JSON transmissions
+    body: form_data
   })
-  const processed_data = await process_data.json();
-  display.innerText = `Tempo: ${processed_data["tempo"]}`
+  //await the json return from FLask
+  const result = await analyze.json();
+  display.innerText = result;
 })
