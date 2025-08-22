@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-import json
+import librosa
+import tempfile
+import os
 
 app = Flask(__name__)
 
@@ -12,9 +14,26 @@ def home():
 @app.route("/process_data", methods=["POST"])
 
 def process_data():
-    dataURL = json.loads(request.get_json())
-    print(dataURL)
-    return jsonify("Something")
+    print("Starting")
+    music_file = request.files["music"]
+    print("File received")
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
+        music_file.save(tmp.name)
+        temp_path = tmp.name
+    print("File saved")
+
+    try:
+        y, sr = librosa.load(temp_path, sr=None)
+        tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
+        print("File analyzed")
+        print(f"Tempo: {tempo}")
+        return jsonify("File analyzed")
+        
+    
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+    
 
 
 
