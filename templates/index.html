@@ -6,12 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="display: flex; flex-direction: row; align-items: center; gap: 2vw;">
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 2vw;">
         <p>Upload File: </p>
         <input type="file" id="file_input">
     </div>
-    <button id="btn">Analyze</button>
-    <p id="display"></p>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <button id="btn" >Analyze</button>
+        <h1 id="display"></h1>
+    </div>
+   
 <script src="/static/script.js"></script>
 </body>
 </html>

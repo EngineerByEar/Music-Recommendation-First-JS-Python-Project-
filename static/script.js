@@ -10,6 +10,7 @@ file_input.addEventListener("change", () => {
   //Use FormData() to transmit file to python and avoiding base64 encoding
   form_data = new FormData();
   form_data.append("music", file);
+  console.log(form_data.get("music"));
 })
 
 button.addEventListener("click", async () => {
@@ -23,5 +24,5 @@ button.addEventListener("click", async () => {
   })
   //await the json return from FLask
   const result = await analyze.json();
-  display.innerText = result;
+  display.innerText = `Tempo: ${await result}`;
 })

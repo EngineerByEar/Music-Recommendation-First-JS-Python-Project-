@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request
 import librosa
 import tempfile
 import os
+import numpy as np
 
 app = Flask(__name__)
 
@@ -32,9 +33,10 @@ def analyze():
         y, sr = librosa.load(temp_path, sr=None)
         tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
         print("File analyzed")
-        print(tempo)
+        #Turn numpy array to a jsonifyable list
+        result = tempo.tolist()[0]
         #tempo is a numpy object and can´t be jsonifyed without further processing
-        return jsonify("Check console to review Results!")
+        return jsonify(result)
 
 
     finally:
