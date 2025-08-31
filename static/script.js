@@ -1,12 +1,21 @@
 const button = document.getElementById("btn");
+
 const energy_input = document.getElementById("energy_input");
+const energy_value = document.getElementById("energy_value");
+
 const danceability_input = document.getElementById("danceability_input");
+const danceability_value = document.getElementById("danceability_value");
+
 const valence_input = document.getElementById("valence_input");
+const valence_value = document.getElementById("valence_value");
+
 const display = document.getElementById("display");
 const extend_button = document.getElementById("extend_display");
 const extended_display = document.getElementById("extended_display");
+
 const select_genre = document.getElementById("genre");
 const checkout_button = document.getElementById("checkout_button");
+
 let extended_info = false;
 
 let genre_list = [];
@@ -28,6 +37,23 @@ document.addEventListener("DOMContentLoaded", async function(){
         select_genre.appendChild(option);
     }
     select_genre.value = "random";
+
+    energy_value.innerText = energy_input.value
+    danceability_value.innerText = danceability_input.value
+    valence_value.innerText = valence_input.value
+
+})
+
+energy_input.addEventListener("change", function(){
+    energy_value.innerText = energy_input.value
+})
+danceability_input.addEventListener("change", function(){
+    danceability_value.innerText = danceability_input.value
+    
+})
+valence_input.addEventListener("change", function(){
+    valence_value.innerText = valence_input.value
+    
 })
 //Get Recommendation and Display Basic Data
 button.addEventListener("click", async function(){
