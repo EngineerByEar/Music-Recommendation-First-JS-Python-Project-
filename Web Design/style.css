@@ -1,0 +1,115 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    margin: 0;
+    padding: 0;
+}
+p{
+    margin: 0;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1rem;
+}
+h1{
+    font-size: 2rem;
+}
+h2{
+    font-size: 2rem;
+    color: white;
+}
+
+.heading-font{
+    font-family: "santelia-script", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.head-button{
+    border-radius: 30px;
+    font-size: 2rem;
+}
+.head-button:hover, button:hover{
+    background-color: grey;
+    cursor: pointer;
+}
+
+
+.button{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1rem;
+    border-radius: 30px;
+
+}
+
+
+
+.landing-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    width: auto;
+
+    background-image: url(Images/Psychedelic\ Cloud\ Background.jpeg);
+    background-repeat: initial;
+    background-position: center;
+    background-blend-mode: multiply;
+}
+
+
+.vibe{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+.vibe-carousel{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+
+
+
+.parameter-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    min-height: 10vh;
+    padding: 2vh;
+    padding-bottom: 5vh;
+}
+    .slider-container{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+.recommendation-page{
+    height: 80vh;
+    background-image: url(/Images/Psychedelic\ Background.jpeg);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+    .result{
+        background-color: white;
+        min-width: 5vw;
+        min-height: 5vh;
+        border: solid black 2px;
+    }

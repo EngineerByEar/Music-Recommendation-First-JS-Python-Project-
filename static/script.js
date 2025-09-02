@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function(){
     });
     const genres = await request.json();
     for (const genre of genres.sort()){
-        genre_list += genre;
+        genre_list.push(genre);
         const option = document.createElement("option");
         option.innerText = genre;
         select_genre.appendChild(option);
@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", async function(){
     danceability_value.innerText = danceability_input.value
     valence_value.innerText = valence_input.value
 
+    console.log(genre_list)
 })
 
 energy_input.addEventListener("change", function(){
