@@ -1,25 +1,35 @@
-const button = document.getElementById("btn");
+let get_recommendation_btn;
+let energy_input;
+let danceability_input;
+let valence_input;
+let display;
+let extend_button;
+let extended_display;
+let select_genre;
+let checkout_button;
 
-const energy_input = document.getElementById("energy_input");
-const energy_value = document.getElementById("energy_value");
+setTimeout(function(){
+get_recommendation_btn = document.getElementById("get_recommendation_btn");
 
-const danceability_input = document.getElementById("danceability_input");
-const danceability_value = document.getElementById("danceability_value");
+energy_input = document.getElementById("energy_input");
 
-const valence_input = document.getElementById("valence_input");
-const valence_value = document.getElementById("valence_value");
+danceability_input = document.getElementById("danceability_input");
 
-const display = document.getElementById("display");
-const extend_button = document.getElementById("extend_display");
-const extended_display = document.getElementById("extended_display");
+valence_input = document.getElementById("valence_input");
 
-const select_genre = document.getElementById("genre");
-const checkout_button = document.getElementById("checkout_button");
+display = document.getElementById("result");
+extend_button = document.getElementById("more_info_btn");
+extended_display = document.getElementById("more_info");
+
+select_genre = document.getElementById("genre_select");
+checkout_button = document.getElementById("check_out_track_btn");
 
 let extended_info = false;
 
 let genre_list = [];
 let response = ""; 
+
+
 
 //Request possible Genres from Data-Set and create Genre selection <option> elements
 document.addEventListener("DOMContentLoaded", async function(){
@@ -38,30 +48,15 @@ document.addEventListener("DOMContentLoaded", async function(){
     }
     select_genre.value = "random";
 
-    energy_value.innerText = energy_input.value
-    danceability_value.innerText = danceability_input.value
-    valence_value.innerText = valence_input.value
-
     console.log(genre_list)
 })
 
-energy_input.addEventListener("change", function(){
-    energy_value.innerText = energy_input.value
-})
-danceability_input.addEventListener("change", function(){
-    danceability_value.innerText = danceability_input.value
-    
-})
-valence_input.addEventListener("change", function(){
-    valence_value.innerText = valence_input.value
-    
-})
 //Get Recommendation and Display Basic Data
-button.addEventListener("click", async function(){
+get_recommendation_btn.addEventListener("click", async function(){
     extended_display.innerHTML ="";
+    extended_display.style.display = "none"
     extend_button.innerText="More Information";
     extended_info = false;
-
 
     const energy = energy_input.value;
     const danceability = danceability_input.value;
@@ -96,6 +91,7 @@ button.addEventListener("click", async function(){
     response = await get_recommendation.json();
     console.log(response);
     
+    display.style.display = "flex";
     display.innerHTML = `
     Artist: ${response.track_artist} <br>
     Track: ${response.track_name} <br>
@@ -106,7 +102,7 @@ button.addEventListener("click", async function(){
     Danceability: ${response.danceability} <br>
     Valence: ${response.valence} <br>
     `;
-
+  
     checkout_button.style.display = "flex";
         
     extend_button.style.display = "flex";
@@ -121,6 +117,7 @@ checkout_button.addEventListener("click", function(){
 extend_button.addEventListener("click", function(){
     if (extended_info == false){
         for (let column in response){
+            extended_display.style.display = "flex";
             extended_display.innerHTML += `${column}: ${response[column]} <br>`
         }
         extended_info = true;
@@ -129,7 +126,20 @@ extend_button.addEventListener("click", function(){
         extended_display.innerHTML = "";
         extended_info = false;
         extend_button.innerText = "More Information";
+        extended_display.style.display = "none";
     };
 
 
 })
+
+
+
+
+
+
+
+
+
+
+}, 100);
+

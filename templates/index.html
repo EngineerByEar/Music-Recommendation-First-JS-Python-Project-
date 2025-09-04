@@ -3,41 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Recommendation</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.typekit.net/ytc1iqq.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 5vh; gap: 2vh;">
-    <h1 style="margin-bottom: -1vh;">Music Recommender</h1>
-    <p>Enter Values from 0 to 1</p>
-    <div style="display: flex; flex-direction: row; justify-content: center; gap: 2vw;">
-        <p>Energy: </p>
-        <input id="energy_input" type="range" min="0" max="1" value="0.5" step="0.1">
-        <p id="energy_value"></p>
+<body>
+<button class="i" id="info_button">i</button>
+<div class="info" id="info">
+    <h2 style="color: black; text-align: center;">Welcome to the Music Recommender</h2>
+    <p style="color: black;">How it works:</p>
+    <p>Empty line muhahahaha</p>
+    <p style="color: black;">
+        Select a genre or leave random. <br>
+        Select parameters: energy, danceability, valence. <br>
+        Get your recommendation!
+    </p>
+    <p style="color: black;">
+        This recommender gives content based recommendations. Contrary to popular music recommendation algorithms it looks at different qualities of the audio itself and determines which song fits the selected parameters best. <br>
+        The model uses data from the high-popularity-spotify-music dataset which already includes the audio features: <a href="https://www.kaggle.com/datasets/solomonameh/spotify-music-dataset" target="_blank">Spotify Music Dataset</a>. <br>
+        The relevant audio features and genre are min-max scaled/one-hot encoded and then used to fit a k-nearest neighbors model which returns the 1 most similar song. <br>
+        Since the data-set only includes the most popular songs, the main advantage of content based music recommendation (equally recommending less well known songs) is lost. This recommender still serves the purpose of exploring content based music recommendation.
+    </p>
+</div>
+<section>
+    <div id="landing-page" class="landing-page">
+        <h1 class="heading-font">Music Recommender</h1>
     </div>
-    <div style="display: flex; flex-direction: row; justify-content: center; gap: 2vw;">
-        <p>Danceability: </p>
-        <input id="danceability_input" type="range" min="0" max="1" value="0.5" step="0.1">
-        <p id="danceability_value"></p>
-    </div>
-    <div style="display: flex; flex-direction: row; justify-content: center; gap: 2vw;">
-        <p>Valence: </p>
-        <input id="valence_input" type="range" min="0" max="1" value="0.5" step="0.1">
-        <p id="valence_value"></p>
-    </div>
-    <div style="display: flex; flex-direction: row; justify-content: center; gap: 2vw;">
-        <label for="genre">Genre: </label>
-        <select name="genre" id="genre">
-            <option>random</option>
-        </select>
-    </div>
+</section>
+<main>
+    <div id="main-page" class="parameter-page">
+        <div id="vibe" class="vibe">
+            <h2 class="heading-font">Choose Genre</h2>
+            <div id="vibe-carousel" class="vibe-carousel"></div>
+            <select id="genre_select">
 
-    <button id="btn" style="margin: 2vh;">Get Recommendation</button>
+            </select>
+        </div>
 
-    <p id="display"></p>
-    
-    <button id="checkout_button" style="display: none;">Check out the track!</button>
 
-    <button id="extend_display" style="display: none;">More Information</button>
-    <p id="extended_display"></p>
-    <script src="/static/script.js"></script>
+        <div id="parameters">
+            <h2 class="heading-font">Select Parameters</h2>
+            <div id="sliders" class="slider-container">
+            </div>
+        </div>
+    </div>
+</main>
+<section>
+    <div id="recommendation_page" class="recommendation-page">
+        <button id="get_recommendation_btn" class="heading-font head-button">Get Recommendation</button>
+        <div id="result" class="result" style="display: none;">
+            
+        </div>
+        <button id="more_info_btn" class="button" style="display: none;">More Track-Information</button>
+        <button id="check_out_track_btn" class="button" style="display: none;">Check out Track</button>
+        <div id="more_info" class="result" style="display: none;">
+            
+        </div>
+    </div>
+</section>
+<script src="/static/frontend-script.js"></script>
+<script src="/static/script.js"></script>
 </body>
 </html>

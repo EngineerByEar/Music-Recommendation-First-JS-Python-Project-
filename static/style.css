@@ -12,19 +12,27 @@ p{
     color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1rem;
+    text-align: center;
+
 }
 h1{
-    font-size: 2rem;
+    font-size: 4rem;
+    text-shadow: 2px 2px #F7735A;
+    text-align: center;
+
 }
 h2{
     font-size: 2rem;
     color: white;
+    text-align: center;
+
 }
 
 .heading-font{
     font-family: "santelia-script", sans-serif;
     font-weight: 300;
     font-style: normal;
+    text-align: center;
 }
 
 .head-button{
@@ -44,6 +52,39 @@ h2{
 
 }
 
+.i{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 1.5rem;
+}
+
+    .info{
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+
+        background-color: white;
+        border: solid black 2px;
+        min-width: 10vw;
+        min-height: 10vh;
+        padding: 20px;
+    }
+
+@media (min-width: 1024px){
+    .info{
+        max-width: 500px;
+    }
+}
 
 
 .landing-page{
@@ -51,10 +92,10 @@ h2{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 80vh;
     width: auto;
 
-    background-image: url(Images/Psychedelic\ Cloud\ Background.jpeg);
+    background-image: url(/static/Images/Psychedelic\ Cloud\ Background.jpeg);
     background-repeat: initial;
     background-position: center;
     background-blend-mode: multiply;
@@ -68,11 +109,18 @@ h2{
     align-items: center;
     gap: 2vh;
 }
-.vibe-carousel{
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-}
+    .vibe-carousel{
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+    }
+    .option{
+        border: solid;
+    }
+    .option:hover{
+        cursor: pointer;
+    }
+
 
 
 
@@ -97,14 +145,19 @@ h2{
 
 
 .recommendation-page{
-    height: 80vh;
-    background-image: url(/Images/Psychedelic\ Background.jpeg);
+    min-height: 80vh;
+    background-image: url(/static/Images/Psychedelic\ Background.jpeg);
+    background-repeat: initial;
+    background-position: center;
+    background-blend-mode: multiply;
+
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 2vh;
+    padding: 5vh;
 }
 
     .result{
@@ -112,4 +165,5 @@ h2{
         min-width: 5vw;
         min-height: 5vh;
         border: solid black 2px;
+        padding: 2vw;
     }

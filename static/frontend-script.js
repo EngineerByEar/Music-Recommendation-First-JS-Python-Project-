@@ -2,6 +2,9 @@ const vibe_carousel_container = document.getElementById("vibe-carousel");
 const genres = ['random', 'afrobeats', 'ambient', 'arabic', 'blues', 'brazilian', 'classical', 'country', 'electronic', 'folk', 'gaming', 'hip-hop', 'indian', 'indie', 'j-pop', 'jazz', 'k-pop', 'korean', 'latin', 'lofi', 'metal', 'pop', 'punk', 'r&b', 'reggae', 'rock', 'soul', 'turkish', 'world']
 const genre_select = document.getElementById("genre_select");
 const slider_parameters = ['energy', 'danceability', 'valence'];
+const info_button = document.getElementById("info_button");
+const info_display = document.getElementById("info");
+let info_displayed = false;
 let vibe_index = 2;
 
 //Get Background Images for vibe carousel
@@ -12,7 +15,7 @@ async function get_bgimage(genre){
     if(data.hits.length > 0){
         return data.hits[0].webformatURL;
     }else{
-        return "/Images/afrobeat.webp"
+        return "/static/Images/afrobeat.webp"
     }
 
 
@@ -41,6 +44,7 @@ async function display_genres(vibe_index){
         option.style.backgroundColor = "white";
         option.style.objectFit = "cover";
         option.style.border = "solid";
+        option.className = "option";
         const image_url = await get_bgimage(genre)
         option.src = image_url;
 
@@ -84,11 +88,11 @@ function create_sliders(){
         slider_div.style.flexDirection = "row";
 
         const slider = document.createElement("input");
-        slider.id = `${parameter}_slider`
+        slider.id = `${parameter}_input`
         slider.type = "range";
         slider.min = "0";
         slider.max = "1";
-        slider.step = "0.1";
+        slider.step = "0.01";
         slider.value = "0.5";
         slider_div.appendChild(slider);
 
@@ -123,3 +127,25 @@ genre_select.addEventListener("change", function(){
     display_genres(vibe_index);
 })
 
+//display info
+info_button.addEventListener("click", function(){
+    if(info_displayed == false){
+        info_display.style.display = "flex";
+        info_displayed = true;
+        info_button.innerText = "X";
+    }else{
+        info_display.style.display = "none";
+        info_displayed = false;
+        info_button.innerText = "i";
+    }
+})
+document.addEventListener("click", function(event){
+    if(info_displayed == true){
+        if(event.target != info_display && event.target != info_button ){
+            info_display.style.display = "none";
+            info_displayed = false;
+            info_button.innerText = "i";
+        }
+        
+    }
+})
