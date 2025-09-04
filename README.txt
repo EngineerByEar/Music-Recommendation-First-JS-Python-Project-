@@ -1,15 +1,10 @@
 Hey, thanks for Checking out my Music Recommender Project!
 
-If you don´t have python/the requirements installed:
-	-Run app.exe
-	-Open http://127.0.0.1:5000/ in your browser | Or the URL that´s logged in the terminal.
-	Sadly app.exe takes quite a while to load. Leave the terminal open for ~3 minutes and you´ll be able to 
-	check out the app!
+Here´s how to get it running:
 
-If you have python:
 	-Install the requirements: pip install -r requirements.txt
 	-The app was built on python Version: 3.12.7
-	- run app.py
+	- run: python app.py
 	- Open http://127.0.0.1:5000/ in your browser | Or the URL that´s logged in the console.
 
 Have fun trying out the app and leave a star on my GitHub-Repo! ;)
